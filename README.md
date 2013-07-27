@@ -1,4 +1,4 @@
 semantictools-tutorial
 ======================
 
-A tutorial that explains how to use the semantictools to design RDF ontologies and media types.
+For step-by-step instructions that explain how to use this tutorial, see [Using semantic-tools](https://sites.google.com/site/restframework/tutorials/using-semantic-tools).
