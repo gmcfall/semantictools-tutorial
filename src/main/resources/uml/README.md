@@ -1,0 +1,1 @@
+This directory holds RDF Ontologies and properties files used to generate documentation.
