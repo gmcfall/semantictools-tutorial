@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XPD:PROJECT xmlns:XPD="http://www.staruml.com" version="1">
+<XPD:HEADER>
+<XPD:SUBUNITS>
+</XPD:SUBUNITS>
+<XPD:PROFILES>
+</XPD:PROFILES>
+</XPD:HEADER>
+<XPD:BODY>
+<XPD:OBJ name="DocumentElement" type="UMLProject" guid="CwspQoCXIEmUT1Ty8aCPRAAA">
+<XPD:ATTR name="Title" type="string">LIS Model</XPD:ATTR>
+<XPD:ATTR name="#OwnedElements" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLModel" guid="RwVkrd4qnkCKvkfJuph/8QAA">
+<XPD:ATTR name="Name" type="string">Data Model</XPD:ATTR>
+<XPD:REF name="Namespace">CwspQoCXIEmUT1Ty8aCPRAAA</XPD:REF>
+<XPD:ATTR name="#OwnedElements" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLPackage" guid="kW7O4w5SCkW2EU8RbF+uUQAA">
+<XPD:ATTR name="Name" type="string">Learning Information Services</XPD:ATTR>
+<XPD:ATTR name="Attachments" type="string">uri=http://purl.imsglobal.org/vocab/lis/v2/lis/
+prefix=lis
+</XPD:ATTR>
+<XPD:REF name="Namespace">RwVkrd4qnkCKvkfJuph/8QAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:BODY>
+</XPD:PROJECT>
