@@ -1,0 +1,273 @@
+@prefix lis: <http://purl.imsglobal.org/vocab/lis/v2/lis#> .
+@prefix listypes: <http://purl.imsglobal.org/vocab/lis/v2/types#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bind: <http://purl.org/semantictools/v1/vocab/bind#> .
+
+<http://purl.imsglobal.org/vocab/lis/v2/lis#> a owl:Ontology  ;
+  rdfs:label "Learning Information Services" ;
+  a bind:TargetNamespace ;
+  bind:suggestedPrefix "lis" .
+
+lis:BaseValueSingle rdf:type owl:Class;
+  rdfs:subClassOf 
+  [ a owl:Restriction ;
+    owl:onProperty      lis:instanceValue;
+    rdfs:comment "The data value held by this BaseValueSingle container."
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      lis:instanceName;
+    owl:minCardinality  1
+  ] ; 
+  rdfs:comment "A value that is annotated with \"type\" information, where the type comes from a controlled vocabulary." .
+
+lis:BaseValueToken rdf:type owl:Class ; 
+  rdfs:comment "A value from some vocabulary. This is ued to provide, and uniquely identify, a selection from an enumerated list within a vocabulary." .
+
+lis:BaseValueType rdf:type owl:Class .
+
+lis:CourseOffering rdf:type owl:Class ;
+  rdfs:subClassOf lis:Organization ; 
+  rdfs:comment "A CourseOffering is the occurrence of a course in a specific term, semester, etc.  A CourseTemplate can have several CourseOfferings, and each CourseOffering can have several CourseSections.  If the CourseTemplate is English 101, then the CourseOfferings might be English 101 (Semester 1) and English 101 (Semester 2)." .
+
+lis:CourseSection rdf:type owl:Class ;
+  rdfs:subClassOf lis:Organization ; 
+  rdfs:comment "A CourseSection is a way to represent a group of people associated with a course or class.  These groups may include everyone in the class or course, or may be subsets of that whole group.  CourseSections may have sub-sections (these are created as separate Group objects linked to the CourseSection)." .
+
+lis:CourseTemplate rdf:type owl:Class ;
+  rdfs:subClassOf lis:Organization ; 
+  rdfs:comment "A CourseTemplate is a general course that exists across terms, semesters, etc.  It is an abstract course representation.  Examples of instances of CourseTemplate include \"Biology 101\", \"Mathematics Module 2\", etc." .
+
+lis:Group rdf:type owl:Class ;
+  rdfs:subClassOf lis:Organization ; 
+  rdfs:comment "A Group object is used to describe organizational units.  It can be used to create substructures within a CourseSection, or superstructures larger than a CourseTemplate (e.g. Department, College, University, School System, etc.)." .
+
+lis:Member rdf:type owl:Class;
+  rdfs:subClassOf 
+  [ a owl:Restriction ;
+    owl:onProperty      lis:person;
+    owl:minCardinality  1
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      lis:role;
+    owl:minCardinality  1
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      lis:roles;
+    owl:minCardinality  1;
+    rdfs:comment "The container that holds the role resources associated with this Member resource. This container provides a REST endpoint where a client may POST new Role resources or GET existing Role resources."
+  ] .
+
+lis:Membership rdf:type owl:Class;
+  rdfs:subClassOf 
+  [ a owl:Restriction ;
+    owl:onProperty      lis:collection;
+    owl:minCardinality  1
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      lis:member;
+    owl:minCardinality  1
+  ] .
+
+lis:MembershipContainer rdf:type owl:Class ;
+  rdfs:subClassOf ldp:Container ,
+  [ a owl:Restriction ;
+    owl:onProperty      ldp:membershipPredicate;
+    owl:hasValue lis:membership
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      ldp:membershipSubject;
+    owl:allValuesFrom  lis:Organization
+  ] ; 
+  rdfs:comment "A specialized kind of Linked Data Platform Container which holds LIS Membership resources." .
+
+lis:Name rdf:type owl:Class;
+  rdfs:subClassOf 
+  [ a owl:Restriction ;
+    owl:onProperty      lis:nameType;
+    owl:minCardinality  1
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      lis:partName;
+    owl:minCardinality  1
+  ] ; 
+  rdfs:comment "The detailed name of the party.  The name is supplied in its individual constituent parts." .
+
+lis:NamePart rdf:type owl:Class ;
+  rdfs:subClassOf lis:BaseValueSingle ; 
+  rdfs:comment "A subclass of BaseValueSingle specialized to represent one part of a person's name (such as the first name or last name)." .
+
+lis:NamePartType rdf:type owl:Class ;
+  rdfs:subClassOf lis:BaseValueType ; 
+  rdfs:comment "The class of all possible types for parts of a name. Concrete instances of this abstract base class include Family, Given, Middle, Prefix, Suffix, etc." .
+
+lis:NameType rdf:type owl:Class ;
+  rdfs:subClassOf lis:BaseValueToken ; 
+  rdfs:comment "The abstract class of all possible types of names of a person.  Concrete subclasses of this abstract base class include Preferred, Full, Maiden, Former, etc." .
+
+lis:Organization rdf:type owl:Class;
+  rdfs:subClassOf 
+  [ a owl:Restriction ;
+    owl:onProperty      lis:title;
+    owl:minCardinality  1
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      lis:membership;
+    rdfs:comment "A membership that defies a person's role in this Organization."
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      lis:memberships;
+    rdfs:comment "The container that holds the memberships of the organization.  This container provides a REST endpoint where a client may POST new Membereship resources or GET existing Membership resources."
+  ] .
+
+lis:Person rdf:type owl:Class;
+  rdfs:subClassOf 
+  [ a owl:Restriction ;
+    owl:onProperty      lis:names;
+    owl:minCardinality  1;
+    rdfs:comment "The container that holds the Name resources associated with this Person.  This container provides a REST endpoint where a client may POST new Name resources or GET existing Name resources."
+  ] ; 
+  rdfs:comment "This class is a container for all the information about a single person." .
+
+lis:Role rdf:type owl:Class ;
+  rdfs:subClassOf rdf:Statement ,
+  [ a owl:Restriction ;
+    owl:onProperty      lis:roleType;
+    owl:minCardinality  1
+  ] .
+
+lis:RoleType rdf:type owl:Class .
+
+lis:SectionAssociation rdf:type owl:Class ;
+  rdfs:subClassOf lis:Organization .
+
+lis:SubRoleType rdf:type owl:Class .
+
+lis:TimeFrame rdf:type owl:Class .
+
+lis:NameContainer rdf:type owl:Class ;
+  rdfs:subClassOf ldp:Container ,
+  [ a owl:Restriction ;
+    owl:onProperty      ldp:membershipPredicate;
+    owl:hasValue lis:name
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      ldp:membershipSubject;
+    owl:allValuesFrom  lis:Person
+  ] ; 
+  rdfs:comment "A specialized kind of Linked Data Platform Container which holds LIS Name resources." .
+
+lis:RoleContainer rdf:type owl:Class ;
+  rdfs:subClassOf ldp:Container ,
+  [ a owl:Restriction ;
+    owl:onProperty      ldp:membershipPredicate;
+    owl:hasValue lis:role
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty      ldp:membershipSubject;
+    owl:allValuesFrom  lis:Member
+  ] ; 
+  rdfs:comment "A specialized kind of Linked Data Platform Container which holds LIS Role resources." .
+
+lis:Status a owl:Class  ;
+  owl:equivalentClass [
+    owl:oneOf (
+      lis:Active 
+      lis:Inactive
+    )
+  ] .
+
+lis:instanceValue rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:BaseValueSingle ;
+  rdfs:range listypes:Text.Type ;
+  rdfs:comment "The data value held by this BaseValueSingle container." .
+
+lis:instanceName rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:BaseValueSingle ;
+  rdfs:range lis:BaseValueType .
+
+lis:person rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Member ;
+  rdfs:range lis:Person .
+
+lis:role rdf:type rdf:Property ;
+  rdfs:domain lis:Member ;
+  rdfs:range lis:Role .
+
+lis:roles rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Member ;
+  rdfs:range lis:RoleContainer ;
+  rdfs:comment "The container that holds the role resources associated with this Member resource. This container provides a REST endpoint where a client may POST new Role resources or GET existing Role resources." .
+
+lis:collection rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Membership ;
+  rdfs:range lis:Organization ;
+  owl:inverseOf lis:membership .
+
+lis:member rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Membership ;
+  rdfs:range lis:Member .
+
+lis:nameType rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Name ;
+  rdfs:range lis:NameType .
+
+lis:partName rdf:type rdf:Property ;
+  rdfs:domain lis:Name ;
+  rdfs:range lis:NamePart .
+
+lis:title rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Organization ;
+  rdfs:range listypes:Text.Type .
+
+lis:membership rdf:type rdf:Property ;
+  rdfs:domain lis:Organization ;
+  rdfs:range lis:Membership ;
+  owl:inverseOf lis:collection ;
+  rdfs:comment "A membership that defies a person's role in this Organization." .
+
+lis:memberships rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Organization ;
+  rdfs:range lis:MembershipContainer ;
+  rdfs:comment "The container that holds the memberships of the organization.  This container provides a REST endpoint where a client may POST new Membereship resources or GET existing Membership resources." .
+
+lis:name rdf:type rdf:Property ;
+  rdfs:domain lis:Person ;
+  rdfs:range lis:Name .
+
+lis:names rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Person ;
+  rdfs:range lis:NameContainer ;
+  rdfs:comment "The container that holds the Name resources associated with this Person.  This container provides a REST endpoint where a client may POST new Name resources or GET existing Name resources." .
+
+lis:dateTime rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Role ;
+  rdfs:range xsd:dateTime .
+
+lis:roleType rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Role ;
+  rdfs:range lis:RoleType .
+
+lis:subRole rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Role ;
+  rdfs:range lis:SubRoleType .
+
+lis:timeFrame rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Role ;
+  rdfs:range lis:TimeFrame .
+
+lis:status rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:Role ;
+  rdfs:range lis:Status .
+
+lis:begin rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:TimeFrame ;
+  rdfs:range xsd:dateTime .
+
+lis:end rdf:type owl:FunctionalProperty ;
+  rdfs:domain lis:TimeFrame ;
+  rdfs:range xsd:dateTime .
+

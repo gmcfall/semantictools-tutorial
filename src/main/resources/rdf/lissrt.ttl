@@ -1,0 +1,55 @@
+@prefix lissrt: <http://www.imsglobal.org/vdex/lis/mmsv2p0/subrolevocabularyv1p0#> .
+@prefix lis: <http://purl.imsglobal.org/vocab/lis/v2/lis#> .
+@prefix lisrt: <http://www.imsglobal.org/vdex/lis/mmsv2p0/roletypevocabularyv1p0#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bind: <http://purl.org/semantictools/v1/vocab/bind#> .
+
+<http://www.imsglobal.org/vdex/lis/mmsv2p0/subrolevocabularyv1p0#> a owl:Ontology  ;
+  rdfs:label "IMS GLC Membership Subrole Type Vocabulary" ;
+  a bind:TargetNamespace ;
+  bind:suggestedPrefix "lissrt" .
+
+lissrt:primaryInstructor rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:instructor ;
+  rdfs:comment "An instructor who is primarily responsible for the instruction" .
+
+lissrt:secondaryInstructor rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:instructor ;
+  rdfs:comment "An instructor who has secondary responsibility for the instruction" .
+
+lissrt:lecturer rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:instructor ;
+  rdfs:comment "An instructor that has limited permissions to modify the course" .
+
+lissrt:guestInstructor rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:instructor ;
+  rdfs:comment """An instructor who is teaching this course outside of their normal responsibilities
+""" .
+
+lissrt:externalInstructor rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:instructor ;
+  rdfs:comment "An instructor who is not a member of the institution" .
+
+lissrt:learner rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:learner ;
+  rdfs:comment "A typical learner" .
+
+lissrt:nonCreditLearner rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:learner ;
+  rdfs:comment "someone who is enrolled through the same process as individuals with the 'learner' subrole, but who is not receiving credit for the course" .
+
+lissrt:guestLearner rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:learner ;
+  rdfs:comment "Someone who is not enrolled through the same process as an individual with the 'learner' subrole; may or may not receive credit for the course." .
+
+lissrt:externalLearner rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:learner ;
+  rdfs:comment "A learner who is not a member of the institution" .
+
+lissrt:instructor rdf:type rdf:Property, lis:SubRoleType ;
+  rdfs:subPropertyOf lisrt:instructor ;
+  rdfs:comment "Someone who usually teaches within a specific course structure" .
+

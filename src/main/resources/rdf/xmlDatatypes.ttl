@@ -1,0 +1,6 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix bind: <http://purl.org/semantictools/v1/vocab/bind#> .
+
+<http://purl.imsglobal.org/vocab/lis/v2/types#> a owl:Ontology ;
+  bind:suggestedPrefix "listypes" .
+

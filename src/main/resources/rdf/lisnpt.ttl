@@ -1,0 +1,37 @@
+@prefix lisnpt: <http://www.imsglobal.org/vdex/lis/pmsv2p0/nameparttypevocabularyv1p0#> .
+@prefix lis: <http://purl.imsglobal.org/vocab/lis/v2/lis#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bind: <http://purl.org/semantictools/v1/vocab/bind#> .
+
+<http://www.imsglobal.org/vdex/lis/pmsv2p0/nameparttypevocabularyv1p0#> a owl:Ontology  ;
+  rdfs:label "IMS Global Person Name Part Type Vocabulary" ;
+  a bind:TargetNamespace ;
+  bind:suggestedPrefix "lisnpt" .
+
+lisnpt:family rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:first rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:given rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:initials rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:last rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:middle rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:nickname rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:particle rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:patrilineal rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:prefix rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:suffix rdf:type rdf:Property, lis:NamePartType .
+
+lisnpt:surname rdf:type rdf:Property, lis:NamePartType .
+

@@ -1,0 +1,41 @@
+@prefix lisrt: <http://www.imsglobal.org/vdex/lis/mmsv2p0/roletypevocabularyv1p0#> .
+@prefix lis: <http://purl.imsglobal.org/vocab/lis/v2/lis#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bind: <http://purl.org/semantictools/v1/vocab/bind#> .
+
+<http://www.imsglobal.org/vdex/lis/mmsv2p0/roletypevocabularyv1p0#> a owl:Ontology  ;
+  rdfs:label "IMS GLC Membership Role Type Vocabulary" ;
+  a bind:TargetNamespace ;
+  bind:suggestedPrefix "lisrt" .
+
+lisrt:learner rdf:type rdf:Property, lis:RoleType ;
+  rdfs:subPropertyOf lisrt:hasMember .
+
+lisrt:instructor rdf:type rdf:Property, lis:RoleType ;
+  rdfs:subPropertyOf lisrt:hasMember .
+
+lisrt:contentDeveloper rdf:type rdf:Property, lis:RoleType ;
+  rdfs:subPropertyOf lisrt:hasMember .
+
+lisrt:hasMember rdf:type rdf:Property, lis:RoleType ;
+  rdfs:domain lis:Organization ;
+  rdfs:range lis:Person .
+
+lisrt:manager rdf:type rdf:Property, lis:RoleType ;
+  rdfs:subPropertyOf lisrt:hasMember .
+
+lisrt:mentor rdf:type rdf:Property, lis:RoleType ;
+  rdfs:subPropertyOf lisrt:hasMember .
+
+lisrt:administrator rdf:type rdf:Property, lis:RoleType ;
+  rdfs:subPropertyOf lisrt:hasMember .
+
+lisrt:teachingAssistant rdf:type rdf:Property, lis:RoleType ;
+  rdfs:subPropertyOf lisrt:hasMember .
+
+lisrt:officer rdf:type rdf:Property, lis:RoleType ;
+  rdfs:subPropertyOf lisrt:hasMember .
+

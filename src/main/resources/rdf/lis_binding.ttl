@@ -1,0 +1,81 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bind: <http://purl.org/semantictools/v1/vocab/bind#> .
+@prefix lis: <http://purl.imsglobal.org/vocab/lis/v2/lis#> .
+@prefix lisrt: <http://www.imsglobal.org/vdex/lis/mmsv2p0/roletypevocabularyv1p0#> .
+
+lis:BaseValueSingle rdfs:subClassOf
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:instanceName ;
+    bind:associationType bind:Aggregation
+  ] .
+lis:Member rdfs:subClassOf
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:person ;
+    bind:associationType bind:Aggregation
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:role ;
+    bind:associationType bind:Composition
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:roles ;
+    bind:associationType bind:Composition
+  ] .
+lis:Membership rdfs:subClassOf
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:collection ;
+    bind:associationType bind:Composition
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:member ;
+    bind:associationType bind:Composition
+  ] .
+lis:Name rdfs:subClassOf
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:nameType ;
+    bind:associationType bind:Aggregation
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:partName ;
+    bind:associationType bind:Composition
+  ] .
+lis:Organization rdf:type bind:AbstractClass .
+lis:Organization rdfs:subClassOf
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:memberships ;
+    bind:associationType bind:Composition
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lisrt:hasMember ;
+    bind:associationType bind:Aggregation
+  ] .
+lis:Person rdfs:subClassOf
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:name ;
+    bind:associationType bind:Composition
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:names ;
+    bind:associationType bind:Composition
+  ] .
+lis:Role rdfs:subClassOf
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:roleType ;
+    bind:associationType bind:Aggregation
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:subRole ;
+    bind:associationType bind:Aggregation
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:timeFrame ;
+    bind:associationType bind:Aggregation
+  ], 
+  [ rdf:type bind:AssociationQualifier ;
+    bind:onProperty lis:status ;
+    bind:associationType bind:Aggregation
+  ] .
+
+lis:Status rdf:type bind:Enum .
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://purl.imsglobal.org/vocab/lis/v2/types#"
+  targetNamespace="http://purl.imsglobal.org/vocab/lis/v2/types#"
+  elementFormDefault="qualified">
+  <xsd:annotation>
+    <xsd:appinfo>
+      <label>LIS Datatypes</label>
+      <prefix>listypes</prefix>
+    </xsd:appinfo>
+  </xsd:annotation>
+  <xsd:simpleType id="Text.Type" name="Text.Type">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="4095"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>
+
